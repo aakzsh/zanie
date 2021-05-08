@@ -2,8 +2,11 @@ import 'dart:async' show Future;
 // import 'package:external_app_launcher/external_app_launcher.    dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
+import 'tts.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_gifimage/flutter_gifimage.dart';
+import 'package:genie/tts.dart';
 import 'package:speech_to_text_plugins/speech_to_text_plugins.dart';
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -19,17 +22,161 @@ class Start extends StatefulWidget {
   _StartState createState() => _StartState();
 }
 
+enum TtsState { playing, stopped, paused, continued }
+
 class _StartState extends State<Start> {
+  FlutterTts flutterTts = FlutterTts();
+
+  String language;
+  double volume = 0.5;
+  double pitch = 1.0;
+  double rate = 0.3;
+  bool isCurrentLanguageInstalled = false;
+
+  String _newVoiceText;
+
+  TtsState ttsState = TtsState.stopped;
+
+  get isPlaying => ttsState == TtsState.playing;
+  get isStopped => ttsState == TtsState.stopped;
+  get isPaused => ttsState == TtsState.paused;
+  get isContinued => ttsState == TtsState.continued;
+
+  bool get isIOS => !kIsWeb && Platform.isIOS;
+  bool get isAndroid => !kIsWeb && Platform.isAndroid;
+  bool get isWeb => kIsWeb;
+
+  @override
+  initState() {
+    super.initState();
+    initTts();
+  }
+
+  initTts() {
+    flutterTts = FlutterTts();
+
+    if (isAndroid) {
+      _getEngines();
+    }
+
+    flutterTts.setStartHandler(() {
+      setState(() {
+        print("Playing");
+        ttsState = TtsState.playing;
+      });
+    });
+
+    flutterTts.setCompletionHandler(() {
+      setState(() {
+        print("Complete");
+        ttsState = TtsState.stopped;
+      });
+    });
+
+    flutterTts.setCancelHandler(() {
+      setState(() {
+        print("Cancel");
+        ttsState = TtsState.stopped;
+      });
+    });
+
+    if (isWeb || isIOS) {
+      flutterTts.setPauseHandler(() {
+        setState(() {
+          print("Paused");
+          ttsState = TtsState.paused;
+        });
+      });
+
+      flutterTts.setContinueHandler(() {
+        setState(() {
+          print("Continued");
+          ttsState = TtsState.continued;
+        });
+      });
+    }
+
+    flutterTts.setErrorHandler((msg) {
+      setState(() {
+        print("error: $msg");
+        ttsState = TtsState.stopped;
+      });
+    });
+  }
+
+  Future<dynamic> _getLanguages() => flutterTts.getLanguages;
+
+  Future _getEngines() async {
+    var engines = await flutterTts.getEngines;
+    if (engines != null) {
+      for (dynamic engine in engines) {
+        print(engine);
+      }
+    }
+  }
+
+  Future speak(String tt_speak) async {
+    await flutterTts.setVolume(1.0);
+    await flutterTts.setSpeechRate(1.0);
+    await flutterTts.setPitch(0.6);
+
+    if (tt_speak != null) {
+      if (tt_speak.isNotEmpty) {
+        await flutterTts.awaitSpeakCompletion(true);
+        await flutterTts.speak(tt_speak);
+      }
+    }
+  }
+
+  Future _stop() async {
+    var result = await flutterTts.stop();
+    if (result == 1) setState(() => ttsState = TtsState.stopped);
+  }
+
+  Future _pause() async {
+    var result = await flutterTts.pause();
+    if (result == 1) setState(() => ttsState = TtsState.paused);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    flutterTts.stop();
+  }
+
+  List<DropdownMenuItem<String>> getLanguageDropDownMenuItems(
+      dynamic languages) {
+    var items = <DropdownMenuItem<String>>[];
+    for (dynamic type in languages) {
+      items.add(
+          DropdownMenuItem(value: type as String, child: Text(type as String)));
+    }
+    return items;
+  }
+
+  void changedLanguageDropDownItem(String selectedType) {
+    setState(() {
+      language = selectedType;
+      flutterTts.setLanguage(language);
+      if (isAndroid) {
+        flutterTts
+            .isLanguageInstalled(language)
+            .then((value) => isCurrentLanguageInstalled = (value as bool));
+      }
+    });
+  }
+
+  void _onChange(String text) {
+    setState(() {
+      _newVoiceText = text;
+    });
+  }
+
   String _platformVersion = 'Unknown';
 
   SpeechToTextPlugins speechToTextPlugins = SpeechToTextPlugins();
 
   @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
   Iterable<Contact> _contacts;
   List<String> phones = [];
   List<String> contactPhone = [];
@@ -47,26 +194,23 @@ class _StartState extends State<Start> {
   Future<String> findContact(name) async {
     await getContacts();
     _contacts.toSet().forEach((element) {
-      if(element.displayName.toLowerCase() == name){
+      if (element.displayName.toLowerCase() == name) {
         element.phones.toSet().forEach((phone) {
           contactPhone.add(phone.value);
         });
-
-
       }
-
     });
-    return contactPhone[0] ?? "no on found";
+    return contactPhone[0] ?? "no one found";
   }
 
   Future<void> makeacall(name) async {
-    info =  await findContact(name);
+    info = await findContact(name);
     launch("tel: $info");
     info = "";
   }
 
   Future<void> sms(name) async {
-    info =  await findContact(name);
+    info = await findContact(name);
     launch("sms:$info");
     info = "";
   }
@@ -214,22 +358,25 @@ class _StartState extends State<Start> {
                         });
 
                         print(onValue[0]);
-                        if(onValue[0].toString().toLowerCase().contains("call")){
-
-                          String name = onValue[0].toString().toLowerCase().split(" ")[1];
+                        if (onValue[0]
+                            .toString()
+                            .toLowerCase()
+                            .contains("call")) {
+                          String name =
+                              onValue[0].toString().toLowerCase().split(" ")[1];
                           print(name);
                           makeacall(name);
-
-                        }else if (onValue[0].toString().toLowerCase().contains("text")){
-                          String name = onValue[0].toString().toLowerCase().split(" ")[1];
+                        } else if (onValue[0]
+                            .toString()
+                            .toLowerCase()
+                            .contains("text")) {
+                          String name =
+                              onValue[0].toString().toLowerCase().split(" ")[1];
                           print(name);
                           sms(name);
-                        }
-                        else{
+                        } else {
                           tts(onValue[0]);
                         }
-
-
                       });
                     },
                     child: Icon(
@@ -238,6 +385,13 @@ class _StartState extends State<Start> {
                       size: 50,
                     ),
                   ),
+                  // IconButton(
+                  //   icon: Icon(Icons.ac_unit),
+                  //   onPressed: () {
+                  //     Navigator.push(context,
+                  //         MaterialPageRoute(builder: (context) => TTS()));
+                  //   },
+                  // )
 
                   // MaterialButton(
                   //   child: Text('stop'),
@@ -272,9 +426,17 @@ class _StartState extends State<Start> {
 }
 
 tts(String message) async {
+  FlutterTts flutterTts = FlutterTts();
   print("function called");
+
+  if (message.toLowerCase().contains("hey") ||
+      message.toLowerCase().contains("hello") ||
+      message.toLowerCase().contains("hi")) {
+    await flutterTts.speak("Hello, how are you doing");
+  }
   if (message.toLowerCase().contains("open") &&
       message.toLowerCase().contains("youtube")) {
+    await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
       androidPackageName: 'com.google.android.youtube',
       // openStore: false
@@ -283,6 +445,7 @@ tts(String message) async {
 
   if (message.toLowerCase().contains("open") &&
       message.toLowerCase().contains("instagram")) {
+    await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
       androidPackageName: 'com.instagram.android',
       // openStore: false
@@ -291,24 +454,25 @@ tts(String message) async {
 
   if (message.toLowerCase().contains("open") &&
       message.toLowerCase().contains("whatsapp")) {
+    await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
-      androidPackageName: 'com.google.android.youtube',
+      androidPackageName: 'com.whatsapp',
       // openStore: false
     );
   }
 
   if (message.toLowerCase().contains("open") &&
       message.toLowerCase().contains("twitter")) {
+    await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
       androidPackageName: 'com.twitter.android',
       // openStore: false
     );
   }
 
-
-
   if (message.toLowerCase().contains("snapchat") &&
       message.toLowerCase().contains("open")) {
+    await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
       androidPackageName: 'com.snapchat.android',
       // openStore: false
@@ -317,6 +481,7 @@ tts(String message) async {
 
   if (message.toLowerCase().contains("spotify") &&
       message.toLowerCase().contains("open")) {
+    await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
       androidPackageName: 'com.spotify.music',
       // openStore: false
@@ -324,13 +489,36 @@ tts(String message) async {
   }
   if (message.toLowerCase().contains("open") &&
       message.toLowerCase().contains("discord")) {
+    await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
       androidPackageName: 'com.discord',
       // openStore: false
     );
   }
-
-
-
-
+  if (message.toLowerCase().contains("joke") &&
+      message.toLowerCase().contains("tell")) {
+    await flutterTts.speak(
+        " What’s the best thing about Switzerland? I don’t know, but the flag is a big plus haha.");
+  }
+  if (message.toLowerCase().contains("what") &&
+      message.toLowerCase().contains("you do")) {
+    await flutterTts.speak(
+        "oh well I can open other applications like spotify, discord for you, tell you good jokes, and talk to you bestie");
+  }
+  if (message.toLowerCase().contains("i am") &&
+      message.toLowerCase().contains("good")) {
+    await flutterTts.speak("thats good to hear, you're the best anyways");
+  }
+  if (message.toLowerCase().contains("please") &&
+      message.toLowerCase().contains("please")) {
+    await flutterTts.speak("awe, dont say please, please");
+  }
+  if (message.toLowerCase().contains("name") &&
+      message.toLowerCase().contains("your")) {
+    await flutterTts
+        .speak("my name is zaynie, they call me that and i kinda love it ");
+  }
+  // else {
+  //   await flutterTts.speak("should i be knowing how to respond, haha");
+  // }
 }
