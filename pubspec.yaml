@@ -34,6 +34,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  speech_to_text: ^3.2.0
+  speech_to_text_plugins: ^1.0.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
