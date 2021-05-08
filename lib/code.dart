@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genie/ContactsPage.dart';
 import 'package:genie/home.dart';
-import 'package:genie/ContactsPage.dart';
 
 class Code extends StatefulWidget {
   @override

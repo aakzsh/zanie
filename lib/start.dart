@@ -10,6 +10,9 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:contacts_service/contacts_service.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Start extends StatefulWidget {
   @override
@@ -25,6 +28,47 @@ class _StartState extends State<Start> {
   void initState() {
     super.initState();
     initPlatformState();
+  }
+
+  Iterable<Contact> _contacts;
+  List<String> phones = [];
+  List<String> contactPhone = [];
+  String info = "";
+
+  Future<void> getContacts() async {
+    //Make sure we already have permissions for contacts when we get to this
+    //page, so we can just retrieve it
+    final Iterable<Contact> contacts = await ContactsService.getContacts();
+    setState(() {
+      _contacts = contacts;
+    });
+  }
+
+  Future<String> findContact(name) async {
+    await getContacts();
+    _contacts.toSet().forEach((element) {
+      if(element.displayName.toLowerCase() == name){
+        element.phones.toSet().forEach((phone) {
+          contactPhone.add(phone.value);
+        });
+
+
+      }
+
+    });
+    return contactPhone[0] ?? "no on found";
+  }
+
+  Future<void> makeacall(name) async {
+    info =  await findContact(name);
+    launch("tel: $info");
+    info = "";
+  }
+
+  Future<void> sms(name) async {
+    info =  await findContact(name);
+    launch("sms:$info");
+    info = "";
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -170,7 +214,22 @@ class _StartState extends State<Start> {
                         });
 
                         print(onValue[0]);
-                        tts(onValue[0]);
+                        if(onValue[0].toString().toLowerCase().contains("call")){
+
+                          String name = onValue[0].toString().toLowerCase().split(" ")[1];
+                          print(name);
+                          makeacall(name);
+
+                        }else if (onValue[0].toString().toLowerCase().contains("text")){
+                          String name = onValue[0].toString().toLowerCase().split(" ")[1];
+                          print(name);
+                          sms(name);
+                        }
+                        else{
+                          tts(onValue[0]);
+                        }
+
+
                       });
                     },
                     child: Icon(
@@ -246,6 +305,8 @@ tts(String message) async {
     );
   }
 
+
+
   if (message.toLowerCase().contains("snapchat") &&
       message.toLowerCase().contains("open")) {
     await LaunchApp.openApp(
@@ -268,4 +329,8 @@ tts(String message) async {
       // openStore: false
     );
   }
+
+
+
+
 }
