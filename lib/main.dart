@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:genie/code.dart';
 import 'qr.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +21,8 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
       body: SafeArea(
         child: Container(
           // color: Colors.white,
@@ -37,7 +40,8 @@ class Homepage extends StatelessWidget {
                       ),
                       Text(
                         "GENIE",
-                        style: TextStyle(color: Colors.pink, fontSize: 50),
+
+                        style: GoogleFonts.lato(fontStyle: FontStyle.normal,color: Colors.white, fontSize: 50)
                       )
                     ],
                   ),
@@ -65,7 +69,7 @@ class Homepage extends StatelessWidget {
                           },
                           height: 50,
                           minWidth: 300,
-                          color: Colors.deepPurple,
+                          color: Colors.purpleAccent,
                         ),
                       ),
                       Text("OR"),
@@ -76,7 +80,7 @@ class Homepage extends StatelessWidget {
                           child: Text(
                             "Enter code manually",
                             style:
-                                TextStyle(fontSize: 20.0, color: Colors.pink),
+                                TextStyle(fontSize: 20.0, color: Colors.white),
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -97,11 +101,13 @@ class Homepage extends StatelessWidget {
           ),
           decoration: BoxDecoration(
               gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
             colors: [
-              Colors.white,
-              Colors.white,
+              Colors.black87,
+              Colors.deepPurple
+              // Color(0x262427),
+              // Color(0x4815DA)
             ],
           )),
         ),
