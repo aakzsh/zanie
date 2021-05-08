@@ -21,6 +21,8 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
       body: SafeArea(
         child: Container(
           // color: Colors.white,
@@ -36,11 +38,13 @@ class Homepage extends StatelessWidget {
                         "assets/logo.gif",
                         height: 150,
                       ),
+
                       Text("GENIE",
                           style: GoogleFonts.lato(
                               fontStyle: FontStyle.normal,
                               color: Colors.white,
                               fontSize: 50))
+
                     ],
                   ),
                 ),
@@ -76,6 +80,7 @@ class Homepage extends StatelessWidget {
                       ),
                       Padding(
                         padding: EdgeInsets.all(5),
+
                         child: Container(
                           child: MaterialButton(
                             elevation: 0.0,
@@ -93,6 +98,7 @@ class Homepage extends StatelessWidget {
                             height: 50,
                             minWidth: 300,
                             color: Colors.white,
+
                           ),
                         ),
                       )
