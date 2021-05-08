@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:genie/ContactsPage.dart';
 import 'package:genie/home.dart';
+import 'package:genie/ContactsPage.dart';
 
 class Code extends StatefulWidget {
   @override
@@ -55,7 +57,7 @@ class _CodeState extends State<Code> {
                   if (txt_val == "genie") {
                     print("success");
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => Home()));
+                        context, MaterialPageRoute(builder: (context) => ContactsPage()));
                   } else {
                     setState(() {
                       msg = "uh oh, wrong passkey, try again";
