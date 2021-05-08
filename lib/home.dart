@@ -20,12 +20,18 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Text(
-                    "Welcome",
-                    style: TextStyle(color: Colors.white, fontSize: 50.0),
+                    "welcome",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 50.0,
+                        fontWeight: FontWeight.w800),
                   ),
                   Text(
-                    "to the greatest night",
-                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    "TO THE GREATEST NIGHT",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w700),
                   ),
                 ],
               ),
