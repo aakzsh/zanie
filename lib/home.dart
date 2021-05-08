@@ -30,9 +30,9 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            Image.network(
-              "https://offroadcode.com/media/1363/genie.png",
-              height: 200,
+            Image.asset(
+              "assets/logo.gif",
+              height: 250,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

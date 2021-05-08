@@ -32,8 +32,8 @@ class Homepage extends StatelessWidget {
                   height: 250,
                   child: Column(
                     children: <Widget>[
-                      Image.network(
-                        "https://media1.giphy.com/media/JQ3KNPhuO0GDJEke3J/giphy.gif?cid=6c09b952yy1728uxs2hxokrov2p9ti2wkqlqr7qfrd5akopi&rid=giphy.gif",
+                      Image.asset(
+                        "assets/logo.gif",
                         height: 150,
                       ),
                       Text("GENIE",
