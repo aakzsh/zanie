@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:genie/code.dart';
 import 'qr.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,10 +36,11 @@ class Homepage extends StatelessWidget {
                         "https://media1.giphy.com/media/JQ3KNPhuO0GDJEke3J/giphy.gif?cid=6c09b952yy1728uxs2hxokrov2p9ti2wkqlqr7qfrd5akopi&rid=giphy.gif",
                         height: 150,
                       ),
-                      Text(
-                        "GENIE",
-                        style: TextStyle(color: Colors.pink, fontSize: 50),
-                      )
+                      Text("GENIE",
+                          style: GoogleFonts.lato(
+                              fontStyle: FontStyle.normal,
+                              color: Colors.white,
+                              fontSize: 50))
                     ],
                   ),
                 ),
@@ -65,28 +67,33 @@ class Homepage extends StatelessWidget {
                           },
                           height: 50,
                           minWidth: 300,
-                          color: Colors.deepPurple,
+                          color: Colors.purpleAccent,
                         ),
                       ),
-                      Text("OR"),
+                      Text(
+                        "OR",
+                        style: TextStyle(color: Colors.white),
+                      ),
                       Padding(
                         padding: EdgeInsets.all(5),
-                        child: MaterialButton(
-                          elevation: 0.0,
-                          child: Text(
-                            "Enter code manually",
-                            style:
-                                TextStyle(fontSize: 20.0, color: Colors.pink),
+                        child: Container(
+                          child: MaterialButton(
+                            elevation: 0.0,
+                            child: Text(
+                              "Enter code manually",
+                              style: TextStyle(
+                                  fontSize: 20.0, color: Colors.purpleAccent),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Code()),
+                              );
+                            },
+                            height: 50,
+                            minWidth: 300,
+                            color: Colors.white,
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Code()),
-                            );
-                          },
-                          height: 50,
-                          minWidth: 300,
-                          color: Colors.black.withOpacity(0.0),
                         ),
                       )
                     ],
@@ -97,11 +104,13 @@ class Homepage extends StatelessWidget {
           ),
           decoration: BoxDecoration(
               gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
             colors: [
-              Colors.white,
-              Colors.white,
+              Colors.black87,
+              Colors.deepPurple
+              // Color(0x262427),
+              // Color(0x4815DA)
             ],
           )),
         ),
