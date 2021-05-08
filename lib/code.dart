@@ -21,32 +21,27 @@ class _CodeState extends State<Code> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text("Enter the magic code",
+
               style : TextStyle(color: Colors.white, fontSize: 24)),
               SizedBox(
                 width: 20.0,
                   height: 20.0,
+
               ),
               TextField(
                 onChanged: (text) {
                   txt_val = text;
                 },
 
-
-
-
                 decoration: InputDecoration(
-                  hintText: "code",
+                  hintText: "code goes here",
                   hintStyle: TextStyle(color: Colors.white.withOpacity(0.4)),
-
                   border: new OutlineInputBorder(
                     borderRadius: new BorderRadius.circular(25.0),
-                    borderSide: new BorderSide(
-                      
-                    ),
+                    borderSide: new BorderSide(),
                   ),
-
                 ),
-                ),
+              ),
 
               SizedBox(
                 width: 20.0,
@@ -56,8 +51,10 @@ class _CodeState extends State<Code> {
                 onPressed: () {
                   if (txt_val == "genie") {
                     print("success");
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => ContactsPage()));
+
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()));
+
                   } else {
                     setState(() {
                       msg = "uh oh, wrong passkey, try again";
@@ -67,23 +64,30 @@ class _CodeState extends State<Code> {
                 },
                 color: Colors.purpleAccent,
                 child: Text("Let the magic begin",
-                style: TextStyle(color: Colors.white)),
+
+                    style: TextStyle(color: Colors.white)),
               ),
-              Text("$msg"),
+              Text(
+                "$msg",
+                style: TextStyle(color: Colors.white),
+              ),
+
             ],
           ),
         ),
         decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.black87,
-                Colors.deepPurple
-                // Color(0x262427),
-                // Color(0x4815DA)
-              ],
-            )),
+
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Colors.black87,
+            Colors.deepPurple
+            // Color(0x262427),
+            // Color(0x4815DA)
+          ],
+        )),
+
       ),
     );
   }

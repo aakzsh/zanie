@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  external_app_launcher:
+    dependency: "direct main"
+    description:
+      name: external_app_launcher
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -90,11 +97,25 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_gifimage:
+    dependency: "direct main"
+    description:
+      name: flutter_gifimage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_tts:
+    dependency: "direct main"
+    description:
+      name: flutter_tts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -128,6 +149,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.1"
   matcher:
     dependency: transitive
     description:
@@ -266,6 +294,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  speech_to_text:
+    dependency: "direct main"
+    description:
+      name: speech_to_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.0"
+  speech_to_text_platform_interface:
+    dependency: transitive
+    description:
+      name: speech_to_text_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.2"
+  speech_to_text_plugins:
+    dependency: "direct main"
+    description:
+      name: speech_to_text_plugins
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.8"
   stack_trace:
     dependency: transitive
     description:

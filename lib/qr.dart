@@ -38,7 +38,7 @@ class _QRViewExampleState extends State<QRViewExample> {
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: FittedBox(
               fit: BoxFit.contain,
               child: Column(
@@ -57,14 +57,32 @@ class _QRViewExampleState extends State<QRViewExample> {
                         child: Text("Success! click me im desperate"),
                       )
                     else
-                      Text("lol")
+                      Text("not the right code ")
                   else
-                    Text('Scan a code'),
+                    Text(
+                      'Scan a code',
+                      style: TextStyle(fontWeight: FontWeight.w700),
+                    ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Colors.deepPurpleAccent,
+                                Colors.pink[800]
+                                // Color(0x262427),
+                                // Color(0x4815DA)
+                              ],
+                            )),
+                        height: 40,
+                        width: 100,
+                        // color: Colors.pink,
                         margin: EdgeInsets.all(8),
                         child: MaterialButton(
                             onPressed: () => setState(() {
@@ -73,11 +91,30 @@ class _QRViewExampleState extends State<QRViewExample> {
                             child: FutureBuilder(
                               future: controller?.getFlashStatus(),
                               builder: (context, snapshot) {
-                                return Text('Flash: ${snapshot.data}');
+                                return Text(
+                                  'Flash: ${snapshot.data}',
+                                  style: TextStyle(
+                                      fontSize: 13, color: Colors.white),
+                                );
                               },
                             )),
                       ),
                       Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Colors.deepPurpleAccent,
+                                Colors.pink[800]
+                                // Color(0x262427),
+                                // Color(0x4815DA)
+                              ],
+                            )),
+                        height: 40,
+                        width: 100,
+                        // color: Colors.pink,
                         margin: EdgeInsets.all(8),
                         child: MaterialButton(
                             onPressed: () => setState(() {
@@ -87,8 +124,12 @@ class _QRViewExampleState extends State<QRViewExample> {
                               future: controller?.getCameraInfo(),
                               builder: (context, snapshot) {
                                 if (snapshot.data != null) {
-                                  return Text(
-                                      'Camera facing ${describeEnum(snapshot.data)}');
+                                  return Center(
+                                      child: Text(
+                                    'Camera:\n${describeEnum(snapshot.data)}',
+                                    style: TextStyle(
+                                        fontSize: 13, color: Colors.white),
+                                  ));
                                 } else {
                                   return Text('loading');
                                 }
@@ -102,22 +143,54 @@ class _QRViewExampleState extends State<QRViewExample> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Container(
+                        height: 40,
+                        width: 100,
                         margin: EdgeInsets.all(8),
                         child: MaterialButton(
                           onPressed: () {
                             controller?.pauseCamera();
                           },
-                          child: Text('pause', style: TextStyle(fontSize: 20)),
+                          child: Text('pause',
+                              style:
+                                  TextStyle(fontSize: 13, color: Colors.white)),
                         ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Colors.black87,
+                                Colors.deepPurple
+                                // Color(0x262427),
+                                // Color(0x4815DA)
+                              ],
+                            )),
                       ),
                       Container(
+                        height: 40,
+                        width: 100,
                         margin: EdgeInsets.all(8),
                         child: MaterialButton(
                           onPressed: () {
                             controller?.resumeCamera();
                           },
-                          child: Text('resume', style: TextStyle(fontSize: 20)),
+                          child: Text('resume',
+                              style:
+                                  TextStyle(fontSize: 13, color: Colors.white)),
                         ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Colors.black87,
+                                Colors.deepPurple
+                                // Color(0x262427),
+                                // Color(0x4815DA)
+                              ],
+                            )),
                       )
                     ],
                   ),
