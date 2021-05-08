@@ -36,6 +36,8 @@ dev_dependencies:
     sdk: flutter
   speech_to_text: ^3.2.0
   speech_to_text_plugins: ^1.0.8
+  flutter_tts: ^3.0.0
+  external_app_launcher: ^0.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

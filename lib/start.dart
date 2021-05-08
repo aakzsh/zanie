@@ -1,8 +1,14 @@
 import 'dart:async' show Future;
-
+// import 'package:external_app_launcher/external_app_launcher.    dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:speech_to_text_plugins/speech_to_text_plugins.dart';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class Start extends StatefulWidget {
   @override
@@ -46,9 +52,12 @@ class _StartState extends State<Start> {
   }
 
   String a = "";
+  int b = 3;
+  String c = "3";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
             child: Container(
@@ -56,12 +65,16 @@ class _StartState extends State<Start> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text("Text is: $a"),
+            Text("wishes remaining:" + "$b"),
             Row(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 MaterialButton(
                   child: Text('activate'),
                   onPressed: () {
+                    setState(() {
+                      b = 3;
+                    });
                     speechToTextPlugins.activate().then((onValue) {
                       print(onValue);
                     });
@@ -79,20 +92,22 @@ class _StartState extends State<Start> {
                     speechToTextPlugins.stop().then((onValue) {
                       setState(() {
                         a = onValue[0];
+                        b = b - 1;
                       });
+
                       print(onValue[0]);
                       tts(onValue[0]);
                     });
                   },
                 ),
-                MaterialButton(
-                  child: Text('cancel'),
-                  onPressed: () {
-                    speechToTextPlugins.cancel().then((onValue) {
-                      print(onValue);
-                    });
-                  },
-                ),
+                // MaterialButton(
+                //   child: Text('cancel'),
+                //   onPressed: () {
+                //     speechToTextPlugins.cancel().then((onValue) {
+                //       print(onValue);
+                //     });
+                //   },
+                // ),
               ],
             ),
           ],
@@ -102,6 +117,60 @@ class _StartState extends State<Start> {
   }
 }
 
-tts(String message) {
+tts(String message) async {
   print("function called");
+  if (message.toLowerCase().contains("open") &&
+      message.toLowerCase().contains("youtube")) {
+    await LaunchApp.openApp(
+      androidPackageName: 'com.google.android.youtube',
+      // openStore: false
+    );
+  }
+
+  if (message.toLowerCase().contains("open") &&
+      message.toLowerCase().contains("instagram")) {
+    await LaunchApp.openApp(
+      androidPackageName: 'com.instagram.android',
+      // openStore: false
+    );
+  }
+
+  if (message.toLowerCase().contains("open") &&
+      message.toLowerCase().contains("whatsapp")) {
+    await LaunchApp.openApp(
+      androidPackageName: 'com.google.android.youtube',
+      // openStore: false
+    );
+  }
+
+  if (message.toLowerCase().contains("open") &&
+      message.toLowerCase().contains("twitter")) {
+    await LaunchApp.openApp(
+      androidPackageName: 'com.twitter.android',
+      // openStore: false
+    );
+  }
+
+  if (message.toLowerCase().contains("snapchat") &&
+      message.toLowerCase().contains("open")) {
+    await LaunchApp.openApp(
+      androidPackageName: 'com.snapchat.android',
+      // openStore: false
+    );
+  }
+
+  if (message.toLowerCase().contains("spotify") &&
+      message.toLowerCase().contains("open")) {
+    await LaunchApp.openApp(
+      androidPackageName: 'com.spotify.music',
+      // openStore: false
+    );
+  }
+  if (message.toLowerCase().contains("open") &&
+      message.toLowerCase().contains("discord")) {
+    await LaunchApp.openApp(
+      androidPackageName: 'com.discord',
+      // openStore: false
+    );
+  }
 }
