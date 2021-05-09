@@ -1,4 +1,4 @@
-## ![ic_launcher](https://user-images.githubusercontent.com/69726390/117557200-3078cd80-b08e-11eb-9630-e111c5cb08d8.png) Zanie - Voice Assistant
+## Zanie - Voice Assistant
 
 ![logo](https://user-images.githubusercontent.com/69726390/117556747-ce1dce00-b089-11eb-93e6-214dfbdb397d.gif)
 
