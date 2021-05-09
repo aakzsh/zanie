@@ -56,7 +56,7 @@ We learned a lot throughout the weekend. 3 out of 4 members of our team were tot
 Well, making few improvements, adding customizable Zanie voice, we would definitely be deploying this app on play store and then in the app store in the near future!!
 
 ## Intro website link
-https://zanie-is-a-genie.us
+zanie-is-a-genie.us
 ## APK Download Link
 gonna include later
 ## Demo Link
