@@ -21,7 +21,7 @@ We wanted to make something fun this weekend. So we made our own voice assistant
 <br>
 It can do magic, show you the digital world, just on your voice commands. <br>
 well, technically...<br>
-It's a voice assistant made on flutter. It can perform all the basic functions such as :-<br>
+It's an interactive voice assistant made on flutter. It can perform a variety of different functions such as :-<br>
 Respond to questions <br>
 Open other apps on voice command <br>
 Call people from contacts <br>
@@ -43,7 +43,7 @@ Also, our introductory website is built using HTML-CSS <br>
 VS-Code and Android studio were used as IDEs
 
 ## Challenges we ran into
-Integrating both Speech to Text and Text to Speech and synchronizing them to work together was indeed a tough task for us. That took most of our time to figure out. But in the end, we were able to do it successfully.
+Integrating both Speech to Text and Text to Speech and synchronizing them to work together was indeed a tough task for us. That took most of our time to figure out. Also, figuring out how to make phone calls from flutter was a bit tricky. But in the end, we were able to do it successfully. 
 
 ## Accomplishments that we’re proud of
 We're proud that in 2 days, we were able to make a whole voice assistant from scratch, and we personally love the Arabian Nights and Aladdin vibes it gives. So much magic for the weekend!!
