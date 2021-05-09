@@ -6,7 +6,7 @@ import 'tts.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_gifimage/flutter_gifimage.dart';
-import 'package:genie/tts.dart';
+import 'tts.dart';
 import 'package:speech_to_text_plugins/speech_to_text_plugins.dart';
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
