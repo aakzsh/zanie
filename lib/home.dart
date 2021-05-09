@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:genie/start.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'start.dart';
+import 'tour.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -21,7 +23,7 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   Text(
                     "welcome",
-                    style: TextStyle(
+                    style: GoogleFonts.unifrakturCook(
                         color: Colors.white,
                         fontSize: 50.0,
                         fontWeight: FontWeight.w800),
@@ -69,7 +71,12 @@ class _HomeState extends State<Home> {
                     "Take a Tour",
                     style: TextStyle(fontSize: 20.0, color: Colors.white),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => tour()),
+                    );
+                  },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(28.0),
                     side: BorderSide(color: Colors.white, width: 2.5),

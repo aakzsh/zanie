@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:genie/ContactsPage.dart';
-import 'package:genie/home.dart';
+import 'ContactsPage.dart';
+import 'home.dart';
 
 class Code extends StatefulWidget {
   @override
@@ -28,6 +28,9 @@ class _CodeState extends State<Code> {
 
               ),
               TextField(
+                style: TextStyle(
+                  color: Colors.white,
+                ),
                 onChanged: (text) {
                   txt_val = text;
                 },

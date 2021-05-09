@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:genie/code.dart';
+import 'code.dart';
+
 import 'qr.dart';
 import 'package:google_fonts/google_fonts.dart';
 
