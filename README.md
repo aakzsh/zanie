@@ -8,12 +8,14 @@ Zanie might steal your heart ❤️
 
 ## Inspiration
 We wanted to make something fun this weekend. So we made our own voice assistant - Zanie, and themed up the whole application with Arabian Nights vibes. Oh and Zanie, is our own genie!
-![New Project 6](https://user-images.githubusercontent.com/69726390/117556980-2e157400-b08c-11eb-8784-fae987071c70.gif)
+<img src="https://user-images.githubusercontent.com/69726390/117556980-2e157400-b08c-11eb-8784-fae987071c70.gif" alt="drawing" width="80%"/>
+ <br>
+
 
 ## What it does
 <br>
-<img src="https://cdn.discordapp.com/attachments/839378323243401216/840775213934444570/PicsArt_05-09-07.49.02.png" alt="drawing" width="40%"/>
-<img src="https://cdn.discordapp.com/attachments/839378323243401216/840773336971739166/PicsArt_05-09-07.41.13.png" alt="drawing" width="40%"/>
+<img src="https://cdn.discordapp.com/attachments/839378323243401216/840776391418183680/PicsArt_05-09-07.54.00.png" alt="drawing" width="80%"/>
+
 
 <br>
 It can do magic, show you the digital world, just on your voice commands. <br>
@@ -27,8 +29,9 @@ Tell jokes <br>
 Tell about himself <br>
 ..and more
 
-The user needs to either scan the QR code or enter code manually to access the app. the code is "genie", and the qr code is attached below
-![photo3](https://cdn.discordapp.com/attachments/839378323243401216/840758574460436520/unknown.png)
+The user needs to either scan the QR code or enter code manually to access the app. the code is "genie", and the qr code is attached below <br>
+<img src="https://cdn.discordapp.com/attachments/839378323243401216/840758574460436520/unknown.png" alt="drawing" width="30%"/>
+ <br>
 Then they can take a tour of the app in the most magical way, or just start with the voice assistant. Clicking on the lamp will allow the app to get voice permission and also our Zanie will appear on the screen.
 And then the user can ask for 3 wishes/questions/commands anything. After 3 wishes, it can be reloaded by tapping on the lamp again.
 
