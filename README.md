@@ -18,7 +18,7 @@ We wanted to make something fun this weekend. So we made our own voice assistant
 <img src="https://cdn.discordapp.com/attachments/839378323243401216/840776391418183680/PicsArt_05-09-07.54.00.png" alt="drawing" width="80%"/>
 
 
-<br><br>
+<br>
 It can do magic, show you the digital world, just on your voice commands. <br>
 well, technically...<br>
 It's a voice assistant made on flutter. It can perform all the basic functions such as :-<br>
