@@ -8,11 +8,11 @@ Zanie might steal your heart ❤️
 
 ## Inspiration
 We wanted to make something fun this weekend. So we made our own voice assistant - Zanie, and themed up the whole application with Arabian Nights vibes. Oh and Zanie, is our own genie!
-
+![New Project 6](https://user-images.githubusercontent.com/69726390/117556980-2e157400-b08c-11eb-8784-fae987071c70.gif)
 
 ## What it does
 
-![New Project 6](https://user-images.githubusercontent.com/69726390/117556980-2e157400-b08c-11eb-8784-fae987071c70.gif)
+
 
 It's a voice assistant made on flutter. It can perform all the basic functions such as :-<br>
 Respond to questions <br>
