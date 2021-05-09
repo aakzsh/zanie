@@ -25,7 +25,7 @@ Integrating both Speech to Text and Text to Speech and synchronizing them to wor
 We're proud that in 2 days, we were able to make a whole voice assistant from scratch, and we personally love the Arabian Nights and Aladdin vibes it gives. So much magic for the weekend!!
 
 ## What we learned
-
+We learned a lot throughout the weekend. 3 out of 4 members of our team were totally new to flutter, so we really learned a whole new framework and enjoyed it pretty much.
 
 ## What’s next for Zanie - Voice Assistant
 Well, making few improvements, adding customizable Zanie voice, we would definitely be deploying this app on play store and then in the app store in the near future!!
