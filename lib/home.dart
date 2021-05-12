@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'start.dart';
 import 'tour.dart';
-
+import 'Spotify.dart';
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Start()),
+                      MaterialPageRoute(builder: (context) => Spotify()),
                     );
                   },
                   shape: RoundedRectangleBorder(
