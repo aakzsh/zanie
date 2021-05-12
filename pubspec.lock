@@ -315,6 +315,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.8"
+  spotify_mobile_sdk:
+    dependency: "direct main"
+    description:
+      name: spotify_mobile_sdk
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   stack_trace:
     dependency: transitive
     description:

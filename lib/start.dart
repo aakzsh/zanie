@@ -434,7 +434,7 @@ tts(String message) async {
       message.toLowerCase().contains("hi")) {
     await flutterTts.speak("Hello, how are you doing");
   }
-  if (message.toLowerCase().contains("open") &&
+  else if (message.toLowerCase().contains("open") &&
       message.toLowerCase().contains("youtube")) {
     await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
@@ -443,7 +443,7 @@ tts(String message) async {
     );
   }
 
-  if (message.toLowerCase().contains("open") &&
+  else if (message.toLowerCase().contains("open") &&
       message.toLowerCase().contains("instagram")) {
     await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
@@ -452,7 +452,7 @@ tts(String message) async {
     );
   }
 
-  if (message.toLowerCase().contains("open") &&
+  else if (message.toLowerCase().contains("open") &&
       message.toLowerCase().contains("whatsapp")) {
     await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
@@ -461,7 +461,7 @@ tts(String message) async {
     );
   }
 
-  if (message.toLowerCase().contains("open") &&
+  else if (message.toLowerCase().contains("open") &&
       message.toLowerCase().contains("twitter")) {
     await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
@@ -470,7 +470,7 @@ tts(String message) async {
     );
   }
 
-  if (message.toLowerCase().contains("snapchat") &&
+  else if (message.toLowerCase().contains("snapchat") &&
       message.toLowerCase().contains("open")) {
     await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
@@ -479,7 +479,7 @@ tts(String message) async {
     );
   }
 
-  if (message.toLowerCase().contains("spotify") &&
+  else if (message.toLowerCase().contains("spotify") &&
       message.toLowerCase().contains("open")) {
     await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
@@ -487,7 +487,7 @@ tts(String message) async {
       // openStore: false
     );
   }
-  if (message.toLowerCase().contains("open") &&
+  else if (message.toLowerCase().contains("open") &&
       message.toLowerCase().contains("discord")) {
     await flutterTts.speak("sure, anything for you, anytime");
     await LaunchApp.openApp(
@@ -495,30 +495,30 @@ tts(String message) async {
       // openStore: false
     );
   }
-  if (message.toLowerCase().contains("joke") &&
+  else if (message.toLowerCase().contains("joke") &&
       message.toLowerCase().contains("tell")) {
     await flutterTts.speak(
         " What’s the best thing about Switzerland? I don’t know, but the flag is a big plus haha.");
   }
-  if (message.toLowerCase().contains("what") &&
+  else if (message.toLowerCase().contains("what") &&
       message.toLowerCase().contains("you do")) {
     await flutterTts.speak(
         "oh well I can open other applications like spotify, discord for you, tell you good jokes, and talk to you bestie");
   }
-  if (message.toLowerCase().contains("i am") &&
+  else if (message.toLowerCase().contains("i am") &&
       message.toLowerCase().contains("good")) {
     await flutterTts.speak("thats good to hear, you're the best anyways");
   }
-  if (message.toLowerCase().contains("please") &&
+  else if (message.toLowerCase().contains("please") &&
       message.toLowerCase().contains("please")) {
     await flutterTts.speak("awe, dont say please, please");
   }
-  if (message.toLowerCase().contains("name") &&
+  else if (message.toLowerCase().contains("name") &&
       message.toLowerCase().contains("your")) {
     await flutterTts
         .speak("my name is zaynie, they call me that and i kinda love it ");
   }
-  // else {
-  //   await flutterTts.speak("should i be knowing how to respond, haha");
-  // }
+  else {
+    await flutterTts.speak("should i be knowing how to respond, haha");
+  }
 }
