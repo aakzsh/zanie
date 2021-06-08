@@ -10,6 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      color: Colors.deepPurpleAccent,
+      title: "Zanie",
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Homepage(),
@@ -47,57 +49,73 @@ class Homepage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: 150,
+                  height: 190,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       Padding(
                         padding: EdgeInsets.all(5),
-                        child: MaterialButton(
-                          elevation: 0.0,
-                          child: Text(
-                            "Scan QR-Code",
-                            style:
-                                TextStyle(fontSize: 20.0, color: Colors.white),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.purpleAccent,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30))),
+                          child: MaterialButton(
+                            elevation: 0.0,
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  fontSize: 20.0, color: Colors.white),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => QRViewExample()),
+                              );
+                            },
+                            height: 50,
+                            minWidth: 300,
+                            // color: Colors.purpleAccent,
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => QRViewExample()),
-                            );
-                          },
-                          height: 50,
-                          minWidth: 300,
-                          color: Colors.purpleAccent,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30))),
+                          child: MaterialButton(
+                              elevation: 0.0,
+                              child: Text(
+                                "SignUp",
+                                style: TextStyle(
+                                    fontSize: 20.0, color: Colors.purpleAccent),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Code()),
+                                );
+                              },
+                              height: 50,
+                              minWidth: 300,
+                              color: Colors.transparent),
                         ),
                       ),
                       Text(
                         "OR",
                         style: TextStyle(color: Colors.white),
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Container(
-                          child: MaterialButton(
-                            elevation: 0.0,
-                            child: Text(
-                              "Enter code manually",
-                              style: TextStyle(
-                                  fontSize: 20.0, color: Colors.purpleAccent),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Code()),
-                              );
-                            },
-                            height: 50,
-                            minWidth: 300,
-                            color: Colors.white,
-                          ),
+                      MaterialButton(
+                        child: Text(
+                          "Continue as a guest",
+                          style: TextStyle(fontSize: 18.0, color: Colors.white),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),

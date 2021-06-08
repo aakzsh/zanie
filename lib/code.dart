@@ -1,85 +1,19 @@
 import 'package:flutter/material.dart';
-import 'ContactsPage.dart';
-import 'home.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Code extends StatefulWidget {
   @override
   _CodeState createState() => _CodeState();
 }
 
-String txt_val, msg = "";
-
 class _CodeState extends State<Code> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("Enter the magic code",
-
-              style : TextStyle(color: Colors.white, fontSize: 24)),
-              SizedBox(
-                width: 20.0,
-                  height: 20.0,
-
-              ),
-              TextField(
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-                onChanged: (text) {
-                  txt_val = text;
-                },
-
-                decoration: InputDecoration(
-                  hintText: "code goes here",
-                  hintStyle: TextStyle(color: Colors.white.withOpacity(0.4)),
-                  border: new OutlineInputBorder(
-                    borderRadius: new BorderRadius.circular(25.0),
-                    borderSide: new BorderSide(),
-                  ),
-                ),
-              ),
-
-              SizedBox(
-                width: 20.0,
-                height: 20.0,
-              ),
-              MaterialButton(
-                onPressed: () {
-                  if (txt_val == "genie") {
-                    print("success");
-
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
-
-                  } else {
-                    setState(() {
-                      msg = "uh oh, wrong passkey, try again";
-                    });
-                    print("fail");
-                  }
-                },
-                color: Colors.purpleAccent,
-                child: Text("Let the magic begin",
-
-                    style: TextStyle(color: Colors.white)),
-              ),
-              Text(
-                "$msg",
-                style: TextStyle(color: Colors.white),
-              ),
-
-            ],
-          ),
-        ),
+        body: SafeArea(
+      child: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
@@ -89,8 +23,43 @@ class _CodeState extends State<Code> {
             // Color(0x4815DA)
           ],
         )),
-
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Text("LogIn",
+                      style: GoogleFonts.lato(
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                          fontSize: 30)),
+                ),
+              ],
+            ),
+            Container(
+              color: Colors.white,
+              height: 50,
+              child: TextField(
+                  decoration: InputDecoration(
+                fillColor: Colors.white,
+                hintText: "LogIn",
+                focusColor: Colors.white,
+              )),
+            ),
+            Container(
+              color: Colors.white,
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                    fillColor: Colors.white, hintText: "SignUp"),
+              ),
+            ),
+          ],
+        ),
       ),
-    );
+    ));
   }
 }
