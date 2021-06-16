@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:zanie/home.dart';
+import 'package:zanie/login.dart';
+import 'package:zanie/signup.dart';
 import 'code.dart';
 
 import 'qr.dart';
@@ -71,7 +74,7 @@ class Homepage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => QRViewExample()),
+                                    builder: (context) => Login()),
                               );
                             },
                             height: 50,
@@ -98,7 +101,7 @@ class Homepage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Code()),
+                                      builder: (context) => Signup()),
                                 );
                               },
                               height: 50,
@@ -111,6 +114,10 @@ class Homepage extends StatelessWidget {
                         style: TextStyle(color: Colors.white),
                       ),
                       MaterialButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        },
                         child: Text(
                           "Continue as a guest",
                           style: TextStyle(fontSize: 18.0, color: Colors.white),

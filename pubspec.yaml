@@ -1,4 +1,4 @@
-name: Zanie
+name: zanie
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -32,6 +32,10 @@ dependencies:
   flutter_tts: ^3.0.0
   external_app_launcher: ^0.0.1
   flutter_gifimage: ^1.0.1
+  firebase_core: ^0.4.0+9
+  firebase_auth: ^0.14.0+5
+  cloud_firestore: ^0.12.9+5
+  firebase_analytics: ^5.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
