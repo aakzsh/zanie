@@ -1,7 +1,7 @@
 import 'package:vimeoplayer/vimeoplayer.dart';
 import 'package:flutter/material.dart';
 
-class tour extends StatelessWidget {
+class Tour extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

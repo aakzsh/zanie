@@ -102,15 +102,15 @@ class _TTSState extends State<TTS> {
     }
   }
 
-  Future _speak(String tt_speak) async {
+  Future _speak(String ttSpeak) async {
     await flutterTts.setVolume(1.0);
     await flutterTts.setSpeechRate(1.0);
     await flutterTts.setPitch(0.6);
 
-    if (tt_speak != null) {
-      if (tt_speak.isNotEmpty) {
+    if (ttSpeak != null) {
+      if (ttSpeak.isNotEmpty) {
         await flutterTts.awaitSpeakCompletion(true);
-        await flutterTts.speak(tt_speak);
+        await flutterTts.speak(ttSpeak);
       }
     }
   }

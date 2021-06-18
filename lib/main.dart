@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:zanie/home.dart';
 import 'package:zanie/login.dart';
 import 'package:zanie/signup.dart';
-import 'code.dart';
-
-import 'qr.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:firebase_core/firebase_core.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:firebase_analytics/firebase_analytics.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -38,10 +45,14 @@ class Homepage extends StatelessWidget {
                   height: 250,
                   child: Column(
                     children: <Widget>[
-                      Image.asset(
-                        "assets/logo.gif",
-                        height: 150,
-                      ),
+                      // SvgPicture.asset(
+                      //   'assets/zanie.svg',
+                      //   height: 150,
+                      // ),
+                      // Image.asset(
+                      //   "assets/zanie.svg",
+                      //   height: 150,
+                      // ),
                       Text("ZANIE",
                           style: GoogleFonts.lato(
                               fontStyle: FontStyle.normal,

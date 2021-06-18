@@ -2,17 +2,11 @@ import 'dart:async' show Future;
 // import 'package:external_app_launcher/external_app_launcher.    dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
-import 'tts.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:flutter_gifimage/flutter_gifimage.dart';
-import 'tts.dart';
 import 'package:speech_to_text_plugins/speech_to_text_plugins.dart';
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
-
-import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -115,15 +109,15 @@ class _StartState extends State<Start> {
     }
   }
 
-  Future speak(String tt_speak) async {
+  Future speak(String ttSpeak) async {
     await flutterTts.setVolume(1.0);
     await flutterTts.setSpeechRate(1.0);
     await flutterTts.setPitch(0.6);
 
-    if (tt_speak != null) {
-      if (tt_speak.isNotEmpty) {
+    if (ttSpeak != null) {
+      if (ttSpeak.isNotEmpty) {
         await flutterTts.awaitSpeakCompletion(true);
-        await flutterTts.speak(tt_speak);
+        await flutterTts.speak(ttSpeak);
       }
     }
   }

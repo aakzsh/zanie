@@ -1,6 +1,7 @@
-import 'package:flutter/foundation.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:zanie/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  String _email, _password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +50,9 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: EdgeInsets.all(20),
                     child: TextField(
+                      onChanged: (text) {
+                        _email = text;
+                      },
                       decoration: InputDecoration(
                           labelText: "Email Address",
                           focusColor: Colors.white,
@@ -59,6 +64,9 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: EdgeInsets.all(20),
                     child: TextField(
+                      onChanged: (text2) {
+                        _password = text2;
+                      },
                       decoration: InputDecoration(
                           labelText: "Password",
                           focusColor: Colors.white,
@@ -87,6 +95,9 @@ class _LoginState extends State<Login> {
                                 style: TextStyle(color: Colors.white),
                               ),
                               onPressed: () {
+                                FirebaseAuth.instance
+                                    .signInWithEmailAndPassword(
+                                        email: _email, password: _password);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(

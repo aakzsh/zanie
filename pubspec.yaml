@@ -23,27 +23,25 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  qr_code_scanner: ^0.3.0
-  qr_flutter: ^3.2.0
-  google_fonts: ^1.1.1
-  contacts_service: ^0.6.1
-  speech_to_text: ^3.2.0
-  speech_to_text_plugins: ^1.0.8
-  flutter_tts: ^3.0.0
-  external_app_launcher: ^0.0.1
-  flutter_gifimage: ^1.0.1
-  firebase_core: ^0.4.0+9
-  firebase_auth: ^0.14.0+5
-  cloud_firestore: ^0.12.9+5
-  firebase_analytics: ^5.0.2
+  google_fonts: 
+  contacts_service:
+  speech_to_text: 
+  speech_to_text_plugins: 
+  flutter_tts: 
+  external_app_launcher: 
+  flutter_gifimage: 
+  firebase_core: 
+  firebase_auth: 
+  cloud_firestore: 
+  firebase_analytics: 
+  flutter_svg: 
+  http:
+  cupertino_icons:
+  permission_handler: 
+  url_launcher: 
+  vimeoplayer:  
 
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  permission_handler: ^5.1.0
-  url_launcher: ^6.0.3
-  vimeoplayer: ^0.1.8
 
 dev_dependencies:
   flutter_test:

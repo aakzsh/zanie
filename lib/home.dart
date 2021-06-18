@@ -12,7 +12,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: myDrawer(),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -48,10 +48,10 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            Image.asset(
-              "assets/logo.gif",
-              height: 250,
-            ),
+            // Image.asset(
+            //   "assets/zanie.svg",
+            //   height: 250,
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
@@ -84,7 +84,7 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => tour()),
+                      MaterialPageRoute(builder: (context) => Tour()),
                     );
                   },
                   shape: RoundedRectangleBorder(
@@ -115,7 +115,7 @@ class _HomeState extends State<Home> {
   }
 }
 
-MyDrawer() {
+myDrawer() {
   return Container(
     color: Colors.white,
     width: 250,
