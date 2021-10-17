@@ -1,8 +1,10 @@
 import 'dart:async' show Future;
+import 'dart:math';
 // import 'package:external_app_launcher/external_app_launcher.    dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text_plugins/speech_to_text_plugins.dart';
 import 'dart:io' show Platform;
@@ -18,7 +20,7 @@ class Start extends StatefulWidget {
 
 enum TtsState { playing, stopped, paused, continued }
 
-class _StartState extends State<Start> {
+class _StartState extends State<Start> with TickerProviderStateMixin {
   FlutterTts flutterTts = FlutterTts();
 
   String language;
@@ -40,9 +42,28 @@ class _StartState extends State<Start> {
   bool get isAndroid => !kIsWeb && Platform.isAndroid;
   bool get isWeb => kIsWeb;
 
+  AnimationController _primaryAnimationController;
+  AnimationController _secondAnimationController;
+
   @override
   initState() {
     super.initState();
+    _primaryAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+    _secondAnimationController =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    _primaryAnimationController.addStatusListener((status) {
+      if (_primaryAnimationController.isCompleted) {
+        _secondAnimationController.repeat(reverse: true);
+      } else if (_primaryAnimationController.isAnimating) {
+        _secondAnimationController.reset();
+      } else if (_primaryAnimationController.isDismissed) {
+        _secondAnimationController.reset();
+      }
+    });
+
     initTts();
   }
 
@@ -135,6 +156,8 @@ class _StartState extends State<Start> {
   @override
   void dispose() {
     super.dispose();
+    _primaryAnimationController.dispose();
+    _secondAnimationController.dispose();
     flutterTts.stop();
   }
 
@@ -292,19 +315,61 @@ class _StartState extends State<Start> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Image.asset("$img", height: 200),
+                    // Image.asset("$img", height: 200),
+                    Container(
+                      height: 200,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: AnimatedBuilder(
+                          animation: _secondAnimationController,
+                          builder: (context, child) {
+                            return Transform.translate(
+                              offset: Offset(
+                                0,
+                                _secondAnimationController.value * 25 - 25,
+                              ),
+                              child: child,
+                            );
+                          },
+                          child: AnimatedBuilder(
+                            animation: CurvedAnimation(
+                                parent: _primaryAnimationController,
+                                curve: Curves.easeInOut),
+                            builder: (context, child) {
+                              return Transform.translate(
+                                offset: Offset(
+                                    0,
+                                    1 /
+                                            tan(sin(_primaryAnimationController
+                                                .value)) *
+                                            25 +
+                                        -50),
+                                child: Transform.scale(
+                                  scale:
+                                      _primaryAnimationController.value * 1.75,
+                                  child: child,
+                                ),
+                              );
+                            },
+                            child: SvgPicture.asset(
+                              "assets/zanie.svg",
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     MaterialButton(
                         onPressed: () {
-                          setState(() {
-                            img = "assets/evolve.gif";
-                            b = 3;
-                          });
-                          Future.delayed(const Duration(milliseconds: 1300),
-                              () {
-                            setState(() {
-                              img = "assets/logo.gif";
-                            });
-                          });
+                          if (_primaryAnimationController.isAnimating) {
+                            _primaryAnimationController.reset();
+                            _primaryAnimationController.forward();
+                          } else if (_primaryAnimationController.isCompleted) {
+                            _primaryAnimationController.reset();
+                            _primaryAnimationController.forward();
+                          } else if (_primaryAnimationController.isDismissed) {
+                            _primaryAnimationController.forward();
+                          }
+
                           speechToTextPlugins.activate().then((onValue) {
                             print(onValue);
                           });
